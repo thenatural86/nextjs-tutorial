@@ -1,3 +1,13 @@
+const createTask = async (formData) => {
+  'use server'
+  const content = formData.get('content')
+  await prisma.task.create({
+    data: {
+      content,
+    },
+  })
+}
+
 const TaskForm = () => {
   return (
     <form action={createTask}>
