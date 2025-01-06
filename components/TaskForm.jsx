@@ -1,3 +1,6 @@
+import prisma from '@/utils/db'
+import { revalidatePath } from 'next/cache'
+
 const createTask = async (formData) => {
   'use server'
   const content = formData.get('content')
@@ -6,6 +9,7 @@ const createTask = async (formData) => {
       content,
     },
   })
+  revalidatePath('/tasks')
 }
 
 const TaskForm = () => {
